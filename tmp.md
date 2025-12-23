@@ -103,9 +103,17 @@ Event Loop:
 - Event loop picks `Task <main>` from the ready queue
 - It calls `Task._step()` internally, which does:
     
-    ```python
-    # Simplified pseudocodedef _step(self):    try:        # Resume the coroutine        awaitable = self.coroutine.send(None)    except StopIteration as e:        # Coroutine finished        self.result = e.value        self.state = DONE
-    ```
+```python
+# Simplified pseudocode
+  def _step(self):
+      try:
+          # Resume the coroutine
+          awaitable = self.coroutine.send(None)
+      except StopIteration as e:
+          # Coroutine finished
+          self.result = e.value
+          self.state = DONE
+```
     
 
 **Coroutine executes:**
